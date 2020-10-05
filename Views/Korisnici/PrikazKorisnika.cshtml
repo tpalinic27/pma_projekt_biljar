@@ -1,0 +1,325 @@
+﻿@model biljar.DbModels.Korisnici
+@{
+    ViewData["Title"] = "PrikazKorisnika";
+}
+    <head>
+        <style>
+            import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
+            body {
+                background-color: #3e94ec;
+                font-family: "Roboto", helvetica, arial, sans-serif;
+                font-size: 16px;
+                font-weight: 400;
+                text-rendering: optimizeLegibility;
+            }
+
+            div.table-title {
+                display: block;
+                margin: auto;
+                max-width: 600px;
+                padding: 5px;
+                width: 100%;
+            }
+
+            .table-title h3 {
+                color: #fafafa;
+                font-size: 30px;
+                font-weight: 400;
+                font-style: normal;
+                font-family: "Roboto", helvetica, arial, sans-serif;
+                text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                text-transform: uppercase;
+            }
+
+
+            /*** Table Styles **/
+
+            .table-fill {
+                background: white;
+                border-radius: 3px;
+                border-collapse: collapse;
+                height: 320px;
+                margin: auto;
+                max-width: 600px;
+                padding: 5px;
+                width: 100%;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                animation: float 5s infinite;
+            }
+
+            th {
+                color: #D5DDE5;
+                ;
+                background: #1b1e24;
+                border-bottom: 4px solid #9ea7af;
+                border-right: 1px solid #343a45;
+                font-size: 23px;
+                font-weight: 100;
+                padding: 24px;
+                text-align: left;
+                text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+                vertical-align: middle;
+            }
+
+                th:first-child {
+                    border-top-left-radius: 3px;
+                }
+
+                th:last-child {
+                    border-top-right-radius: 3px;
+                    border-right: none;
+                }
+
+            tr {
+                border-top: 1px solid #C1C3D1;
+                border-bottom-: 1px solid #C1C3D1;
+                color: #666B85;
+                font-size: 16px;
+                font-weight: normal;
+                text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+            }
+
+                tr:hover td {
+                    background: #4E5066;
+                    color: #FFFFFF;
+                    border-top: 1px solid #22262e;
+                }
+
+                tr:first-child {
+                    border-top: none;
+                }
+
+                tr:last-child {
+                    border-bottom: none;
+                }
+
+                tr:nth-child(odd) td {
+                    background: #EBEBEB;
+                }
+
+                tr:nth-child(odd):hover td {
+                    background: #4E5066;
+                }
+
+                tr:last-child td:first-child {
+                    border-bottom-left-radius: 3px;
+                }
+
+                tr:last-child td:last-child {
+                    border-bottom-right-radius: 3px;
+                }
+
+            td {
+                background: #FFFFFF;
+                padding: 20px;
+                text-align: left;
+                vertical-align: middle;
+                font-weight: 300;
+                font-size: 18px;
+                text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+                border-right: 1px solid #C1C3D1;
+            }
+
+                td:last-child {
+                    border-right: 0px;
+                }
+
+            th.text-left {
+                text-align: left;
+            }
+
+            th.text-center {
+                text-align: center;
+            }
+
+            th.text-right {
+                text-align: right;
+            }
+
+            td.text-left {
+                text-align: left;
+            }
+
+            td.text-center {
+                text-align: center;
+            }
+
+            td.text-right {
+                text-align: right;
+            }
+
+            .myButton {
+                box-shadow: inset 0px 1px 0px 0px #bee2f9;
+                background: linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
+                background-color: #63b8ee;
+                border-radius: 6px;
+                border: 1px solid #3866a3;
+                display: inline-block;
+                cursor: pointer;
+                color: #14396a;
+                font-family: Arial;
+                font-size: 18px;
+                font-weight: bold;
+                padding: 6px 24px;
+                text-decoration: none;
+                text-shadow: 0px 1px 0px #7cacde;
+            }
+
+                .myButton:hover {
+                    background: linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+                    background-color: #468ccf;
+                }
+
+                .myButton:active {
+                    position: relative;
+                    top: 1px;
+                }
+            .select {
+                position: relative;
+                display: inline-block;
+                margin-bottom: 15px;
+                width: 100%;
+            }
+
+                .select select {
+                    font-family: 'Arial';
+                    display: inline-block;
+                    width: 100%;
+                    cursor: pointer;
+                    padding: 21px 17px;
+                    outline: 0;
+                    border: 2px solid #05485d;
+                    border-radius: 91px;
+                    background: #349494;
+                    color: #dce9ec;
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                }
+
+                    .select select::-ms-expand {
+                        display: none;
+                    }
+
+                    .select select:hover,
+                    .select select:focus {
+                        color: #0f0303;
+                        background: #ffffff;
+                    }
+
+                    .select select:disabled {
+                        opacity: 0.3;
+                        pointer-events: none;
+                    }
+
+            .select_arrow {
+                position: absolute;
+                top: 31px;
+                right: 35px;
+                pointer-events: none;
+                border-style: solid;
+                border-width: 8px 5px 0px 5px;
+                border-color: #0e3b69 transparent transparent transparent;
+            }
+
+            .select select:hover ~ .select_arrow,
+            .select select:focus ~ .select_arrow {
+                border-top-color: #b0abab;
+            }
+
+            .select select:disabled ~ .select_arrow {
+                border-top-color: #5d5252;
+            }
+        </style>
+    </head>
+
+    <div class="table-title">
+        <h1>Korisnik - info</h1>
+    </div>
+
+<div>
+    <table class="table" id="ispis">
+        <thead>
+            <tr>
+                <th class="text-left">Id</th>
+                <th class="text-left">Email</th>
+                <th class="text-left">Username</th>
+                <th class="text-left">Password</th>
+                <th class="text-left">Klub</th>
+            </tr>
+        
+        </thead>
+        <tbody id='tbody'>
+            <tr>
+                <td class="text-left"> @Model.IdKorisnici</td>
+                <td class="text-left"> @Model.Email</td>
+                <td class="text-left"> @Model.Username</td>
+                <td class="text-left"> @Model.Password</td>
+                @if (Model.IdKluboviNavigation != null)
+                {
+                    <td class="text-left"> @Model.IdKluboviNavigation.Ime</td>
+                }
+                else
+                {
+                    <td class="text-left">/</td>
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="table-fill">
+    <div class="table-title">
+        <h1>Promijeni klub</h1>
+    </div>
+    <div class="article-container">
+        <div class="article">
+            <select class="select" id="klub_o">
+            </select>
+        </div>
+        <div class="article">
+            <button class="myButton" type="button" onclick="unesi()">Odaberi</button>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+
+    function ispisKlubova(data)
+    {
+        console.log(data);
+
+
+        let parent = document.getElementById('klub_o');
+        for (var i = 0; i < data.length; i++)
+        {
+            console.log("tu sam");
+            let element = data[i];
+            console.log(element);
+            let opcija = document.createElement('OPTION');
+            opcija.innerHTML = element.ime;
+            opcija.id = element.id_klubovi;
+            parent.appendChild(opcija);
+
+        }
+        console.log("Gotovo");
+    }
+
+    function unesi()
+    {
+        let id = document.getElementById("klub_o").options[document.getElementById("klub_o").selectedIndex].id;
+        console.log(id);
+
+        axios.put(`/api/korisnici/unosklub/${id}`);
+
+        setTimeout(function () { location.reload(true); }, 2000);
+
+
+    }
+    axios.get('/api/korisnici/klubovi').then(resolve => ispisKlubova(resolve.data));
+</script>
+
+

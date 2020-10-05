@@ -1,0 +1,449 @@
+﻿
+@model List<Klubovi>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Popis klubova</title>
+    <meta charset="utf-8" />
+    @{
+        ViewData["Title"] = "OdaberiKlub";
+    }
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: white;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .article-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .article {
+            flex: 0 0 50%;
+            padding: 10px;
+        }
+
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .myButton {
+            box-shadow: inset 0px 1px 0px 0px #bee2f9;
+            background: linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
+            background-color: #63b8ee;
+            border-radius: 6px;
+            border: 1px solid #3866a3;
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 45px;
+            margin-left: 300px;
+            color: #14396a;
+            font-family: Arial;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 13px 52px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #7cacde;
+        }
+
+            .myButton:hover {
+                background: linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+                background-color: #468ccf;
+            }
+
+            .myButton:active {
+                position: relative;
+                top: 1px;
+            }
+
+        .select-css {
+            display: block;
+            font-size: 20px;
+            font-family: sans-serif;
+            font-weight: 700;
+            color: #444;
+            line-height: 1.3;
+            padding: .6em 1.4em .5em .8em;
+            width: 75%;
+            max-width: 100%;
+            box-sizing: border-box;
+            margin-top: 50px;
+            margin-left: 450px;
+            border: 1px solid #aaa;
+            box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+            border-radius: .5em;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            background-color: #fff;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+            background-repeat: no-repeat, repeat;
+            background-position: right .7em top 50%, 0 0;
+            background-size: .65em auto, 100%;
+        }
+
+            .select-css::-ms-expand {
+                display: none
+            }
+
+            .select-css:hover {
+                border-color: #888;
+            }
+
+            .select-css:focus {
+                border-color: #aaa;
+                box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+                color: #222;
+                outline: none;
+            }
+
+            .select-css option {
+                font-weight: normal;
+            }
+    </style>
+
+</head>
+<body>
+    <div class="article-container">
+
+        <div class="article">
+
+
+                <select class="select-css" id="klub_o">
+                    @foreach (Klubovi klub in Model)
+                    {
+                        <option id="@klub.Id_klubovi">@klub.Ime</option>
+
+                    }
+                </select>
+        </div>
+        <div class="article">
+            <button class="myButton" type="button" onclick="unesi()">Odaberi</button>
+        </div>
+
+    </div>
+    <br />
+    <hr />
+    <div class="">
+        <!-- Page Content -->
+        <div class="container">
+
+            <!-- Page Features -->
+            <div class="row text-center">
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/8ballSesvete.png" alt="8BallSesvete">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC 8 Ball Sesvete</h4>
+                            <p class="card-text">Kelekova ul. 4, 10360, Sesvete, <br>Telefon: 01 2000 361</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Cibalia.png" alt="Cibalia">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Cibalia</h4>
+                            <p class="card-text">32100 Vinkovci, Glagoljaška 35, <br>Telefon: +385 91 339 05 10</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Desetka.png" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Desetka</h4>
+                            <p class="card-text">Doverska Ul. 11, 21000, Split, <br> Telefon: +385 91 250 68 31</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Hustler.png" alt="Dubrovnik">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Dubrovnik</h4>
+                            <p class="card-text">Liechtensteinov put 10, 20000, Dubrovnik</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row text-center">
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Hustler.png" alt="Hustler">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Hustler Academy</h4>
+                            <p class="card-text">22211 Vodice, Srima I 44</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Merit.png" alt="Merit">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Merit</h4>
+                            <p class="card-text">21000 Split, Svetog Petra starog 2</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Metropolis.png" alt="Metropolis">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Metropolis</h4>
+                            <p class="card-text">10020 Zagreb, Avenija Dubrovnik 10, <br> Telefon: +385 98 449 795</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/MrQ.png" alt="MrQ">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Mr.Q</h4>
+                            <p class="card-text">10000 Zagreb, Šubićeva 55, <br> Telefon: +385 91 6676066</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row text-center">
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/PinkPanther.png" alt="Pink Panther">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Pink Panther</h4>
+                            <p class="card-text">Mejaši 67, Split, <br> Telefon: 098 1685080</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Hustler.png" alt="Pupnat">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Pupnat</h4>
+                            <p class="card-text">20274 Pupnat, Korčula, <br> Telefon: +385 20 717 075</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/PlanB.png" alt="Plan B">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Plan B</h4>
+                            <p class="card-text">31000 Osijek, Gundulićeva 5a, <br> Telefon: +385 91 5477 070</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Drnis.png" alt="Drniš">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Drniš</h4>
+                            <p class="card-text">Bartola Kašića 22320, Drniš, <br> Telefon: 099 819 5898</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row text-center">
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Zadar.jpg" alt="Zadar">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Zadar</h4>
+                            <p class="card-text">Ul. Ive Senjanina 14/B, 23000, Zadar</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Hustler.png" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Road Runners</h4>
+                            <p class="card-text">Miljenka Buljana 29a, 21230 Sinj, <br> Telefon: 098 495 005</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Shooters.jpg" alt="Shooters">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Shooters</h4>
+                            <p class="card-text">Cvjetna ul. 39, 43000, Bjelovar</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Hustler.png" alt="Sneaky Pete">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Sneaky Pete</h4>
+                            <p class="card-text">Nikole Tesle, 23000 Zadar</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row text-center">
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Olimp.png" alt="Olikmp">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Olimp</h4>
+                            <p class="card-text"> Lovrinačka 16, Split</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Zeus.png" alt="Zeus">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Zeus</h4>
+                            <p class="card-text">21214 Kaštel Kambelovac, Ivana Pavla II 89, </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Zlatar.png" alt="Zlatar">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Zlatar</h4>
+                            <p class="card-text">49250 Zlatar, Martinečka 97, <br> Telefon: 099 3736127</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Sibenik.png" alt="Šibenik">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Šibenik</h4>
+                            <p class="card-text">22000 Šibenik, Bregovita 1</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row text-center">
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Hustler.png" alt="Mosconi">
+                        <div class="card-body">
+                            <h4 class="card-title">BSK Mosconi</h4>
+                            <p class="card-text"> Trnjanska cesta 23, Zagreb</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Hustler.png" alt="The Nugget">
+                        <div class="card-body">
+                            <h4 class="card-title">Snooker klub The Nugget</h4>
+                            <p class="card-text">Matunova 14,Zagreb, <br> Telefon: 099 595 2779</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Hustler.png" alt="Las Vegas">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Las Vegas</h4>
+                            <p class="card-text">Ilica 209, 10000 Zagreb</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="~/Images/Klubovi/Hustler.png" alt="Extreme">
+                        <div class="card-body">
+                            <h4 class="card-title">BK/BC Extreme</h4>
+                            <p class="card-text">Vrbovec, Zagrebačka 97, <br> Telefon: 095 5240513</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container -->
+    </div>
+
+
+    <script>
+
+        function unesi()
+        {
+            var e = document.getElementById("klub_o");
+            var id = e.options[e.selectedIndex].id;
+            window.location.replace("/biljar/korisnici");
+            axios.put(`/api/korisnici/unosklub/${id}`);
+
+        }
+
+    </script>
+
+</body>
+
+
+>
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
+</html>

@@ -1,0 +1,198 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 80%;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+
+        /* The Close Button */
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        .modal-header {
+            padding: 2px 16px;
+            background-color: #16A5EC;
+            color: white;
+        }
+
+        .modal-body {
+            padding: 2px 16px;
+        }
+
+        .modal-footer {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        /* Add Animation */
+        @@-webkit-keyframes slideIn {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 100px;
+                opacity: 1
+            }
+        }
+
+        @@keyframes slideIn {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 100px;
+                opacity: 1
+            }
+        }
+
+        @@-webkit-keyframes fadeIn {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @@keyframes fadeIn {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+    </style>
+<link rel="stylesheet" href="~/css/site.css" />
+<div class="container">
+
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5">
+        <div class="col-lg-7">
+            <br>
+            <img class="img-fluid rounded mb-4 mb-lg-0" src="~/images/rack.jpg" alt="" />
+        </div>
+        <!-- /.col-lg-8 -->
+        <div class="col-lg-5">
+            <h1 class="font-weight-light">Rack 'Em Up</h1>
+            <p>Dobrodošli! Ukoliko želite saznati u kojim sve gradovima u Hrvatskoj možete igrati biljar, ovo je prava stranica za Vas. Za više informacija, pogledajte dolje.</p>
+            <a class="btn btn-primary" id="botunKlikniMe" href="#">Klikni me</a>
+            <div id="mojModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">&times;</span>
+
+                    </div>
+                    <div class="modal-body">
+                        <p style="text-align: center;"><b>Kupnja opreme</p>
+                        <div>
+                            <a href="http://shop.billiard-plus.hr/" target="_blank"><span><b>Billiard Plus</b></a></span><br>
+                            <a href="https://www.billiardshopgroup.com/" target="_blank"><span><b>Billiard Shop Group</b></a></span><br>
+                            <a href="https://www.dynamic-billard.de/en/" target="_blank"><span><b>Dynamic Billiard</b></a></span><br>
+                            <a href="https://www.ozonebilliards.com/" target="_blank"><span><b>Ozone Billiards</b></a></span><br>
+                            <a href="https://store.kozoom.com/en/pool-billiards.html" target="_blank"><span><b>Kozoom</b></a></span><br>
+                            <a href="https://www.ortmann-billiards.com/en_GB" target="_blank"><span><b>Ortmann Billiards</b></a></span><br>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
+    <!-- Call to Action Well -->
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+        <div class="card-body">
+            <p class="text-white m-0">There is no off season.</p>
+        </div>
+    </div>
+
+</div>
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2020 - biljar -
+    </div>
+</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/417824116f.js" crossorigin="anonymous"></script>
+<script>
+        // dohvati modal
+        var modal = document.getElementById("mojModal");
+
+        // dohvati botun koji otvara  modal
+        var btn = document.getElementById("botunKlikniMe");
+
+        // span element koji zatvara (x) modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // kada korisnik klikne na botun, otvara modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // kada korisnik klikne na <span> (x), zatvara modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // kada korisnik klikne bilo gdje na stranici, zatvara modal
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+</script>
+
